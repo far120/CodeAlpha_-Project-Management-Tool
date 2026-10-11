@@ -28,7 +28,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // rate limiting
-app.use(apiLimiter);
+// app.use(apiLimiter);
 
 // Custom User Activity Audit Logger
 app.use(userActivityLogger);

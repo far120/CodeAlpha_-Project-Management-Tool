@@ -1,4 +1,4 @@
-import type{ IComment, ICommentCreate, ICommentUpdate } from "../types/comment.type";
+import type { ICommentCreate, ICommentUpdate } from "../types/comment.type";
 import {
   getTaskComments,
   createComment,
@@ -16,10 +16,12 @@ export const useGetTaskComments = (taskId: string) => {
   const gettaskcomments = useQuery({
     queryKey: ["tasks", taskId, "comments"],
     queryFn: () => getTaskComments(taskId),
-    enabled: !!taskId,
+    enabled: Boolean(taskId),
   });
 
-  return { gettaskcomments };
+  const comments = gettaskcomments.data || [];
+
+  return { gettaskcomments, comments, isLoading: gettaskcomments.isLoading, isError: gettaskcomments.isError };
 };
 
 export const useCreateComment = (taskId: string) => {
@@ -36,15 +38,15 @@ export const useCreateComment = (taskId: string) => {
     },
   });
 
-  return { createcomment };
+  return { createcomment, isPending: createcomment.isPending };
 };
 
-export const useUpdateComment = (commentId: string, taskId: string) => {
+export const useUpdateComment = (taskId: string) => {
   const queryClient = useQueryClient();
 
   const updatecomment = useMutation({
-    mutationFn: (commentData: ICommentUpdate) =>
-      updateComment(commentId, commentData),
+    mutationFn: ({ commentId, data }: { commentId: string; data: ICommentUpdate }) =>
+      updateComment(commentId, data),
 
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -53,14 +55,14 @@ export const useUpdateComment = (commentId: string, taskId: string) => {
     },
   });
 
-  return { updatecomment };
+  return { updatecomment, isPending: updatecomment.isPending };
 };
 
-export const useDeleteComment = (commentId: string, taskId: string) => {
+export const useDeleteComment = (taskId: string) => {
   const queryClient = useQueryClient();
 
   const deletecomment = useMutation({
-    mutationFn: () => deleteComment(commentId),
+    mutationFn: (commentId: string) => deleteComment(commentId),
 
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -69,5 +71,5 @@ export const useDeleteComment = (commentId: string, taskId: string) => {
     },
   });
 
-  return { deletecomment };
+  return { deletecomment, isPending: deletecomment.isPending };
 };

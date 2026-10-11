@@ -9,9 +9,12 @@ const router = Router();
 
 router.use("/users", userRoutes);
 router.use("/logs", auditLogRoutes);
+router.use("/", taskRoutes);
+router.use("/", commentRoutes);
 router.use("/projects", projectRoutes);
 router.use("/tasks", taskRoutes);
 router.use("/comments", commentRoutes);
+
 
 router.get("/health", (req, res) => {
   res.status(200).json({

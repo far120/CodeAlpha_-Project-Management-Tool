@@ -17,12 +17,12 @@ export default function Login() {
     const { loginMutation, loginPending, loginIsError, loginError } = useUserLoginMutation();
     const [showPassword, setShowPassword] = useState(false);
 
-    const {register, handleSubmit, formState: { errors }, reset}
-     = useForm<IloginData>();
+    const { register, handleSubmit, formState: { errors }, reset }
+        = useForm<IloginData>();
 
 
     const onSubmit = (data: IloginData) => {
-         loginMutation(data);
+        loginMutation(data);
     };
 
     const errorMessage =

@@ -5,6 +5,9 @@ import Loader from "../../components/Feedback/Loader";
 const NotFound = lazy(() => import("./NotFound"));
 const HomePage = lazy(() => import("../../pages/HomePage"));
 const MainLayout = lazy(() => import("../../components/Layout/MainLayout"));
+const ProjectsPage = lazy(() => import("../../pages/ProjectsPage"));
+const ProjectDetailsPage = lazy(() => import("../../pages/ProjectDetailsPage"));
+
 import Login from "../../features/auth/components/Login";
 import Register from "../../features/auth/components/Register";
 import Profile from "../../features/user/components/profile";
@@ -13,7 +16,6 @@ import Dashboard from "../../features/user/components/dashboard";
 import UserManagement from "../../features/user/components/UserManagement";
 import UserActivityLogs from "../../features/logs/components/UserActivityLogs";
 import ProtectedRoute from "./ProtectedRoute";
-import ProjectList from "../../features/project/components/test";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +40,14 @@ export const router = createBrowserRouter([
         element: <ProtectedRoute />,
         children: [
           {
+            path: "/projects",
+            element: <ProjectsPage />,
+          },
+          {
+            path: "/projects/:projectId",
+            element: <ProjectDetailsPage />,
+          },
+          {
             path: "/profile",
             element: <Profile />,
           },
@@ -48,10 +58,6 @@ export const router = createBrowserRouter([
           {
             path: "/dashboard",
             element: <Dashboard />,
-          },
-          {
-            path: "/projects",
-            element: <ProjectList />,
           },
         ],
       },
@@ -71,5 +77,3 @@ export const router = createBrowserRouter([
     ],
   },
 ]);
-
-

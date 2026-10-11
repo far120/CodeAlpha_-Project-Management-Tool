@@ -17,12 +17,29 @@ const router = Router();
   
 
 // Comments inside a task
-router.post("/tasks/:taskId/comments", authMiddleware, validate(createCommentSchema), createComment);
-router.get("/tasks/:taskId/comments", authMiddleware, getTaskComments);
+router.post(
+  ["/tasks/:taskId/comments", "/:taskId/comments"],
+  authMiddleware,
+  validate(createCommentSchema),
+  createComment
+);
+router.get(
+  ["/tasks/:taskId/comments", "/:taskId/comments"],
+  authMiddleware,
+  getTaskComments
+);
 
 // individual comment operations
-router.patch("/comments/:commentId", authMiddleware, validate(updateCommentSchema),updateComments);
-router.delete("/comments/:commentId", authMiddleware, deleteComment);
-
+router.patch(
+  ["/comments/:commentId", "/:commentId"],
+  authMiddleware,
+  validate(updateCommentSchema),
+  updateComments
+);
+router.delete(
+  ["/comments/:commentId", "/:commentId"],
+  authMiddleware,
+  deleteComment
+);
 
 export default router;

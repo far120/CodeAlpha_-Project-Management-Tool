@@ -1,7 +1,5 @@
 import { z } from "zod";
 
-import { z } from "zod";
-
 export const createProjectSchema = z.object({
   body: z.object({
     name: z

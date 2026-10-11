@@ -1,4 +1,4 @@
-import type { ITask,ITaskCreate,ITaskUpdate } from '../types/task.type';
+import type { ITaskCreate, ITaskUpdate } from "../types/task.type";
 import {
   useQuery,
   useMutation,
@@ -17,20 +17,24 @@ export const useGetProjectTasks = (projectId: string) => {
   const getprojecttasks = useQuery({
     queryKey: ["projects", projectId, "tasks"],
     queryFn: () => getProjectTasks(projectId),
-    enabled: !!projectId,
+    enabled: Boolean(projectId),
   });
 
-  return { getprojecttasks };
+  const tasks = getprojecttasks.data || [];
+
+  return { getprojecttasks, tasks, isLoading: getprojecttasks.isLoading, isError: getprojecttasks.isError };
 };
 
 export const useGetTaskById = (taskId: string) => {
   const gettaskbyid = useQuery({
     queryKey: ["tasks", taskId],
     queryFn: () => getTaskById(taskId),
-    enabled: !!taskId,
+    enabled: Boolean(taskId),
   });
 
-  return { gettaskbyid };
+  const task = gettaskbyid.data;
+
+  return { gettaskbyid, task, isLoading: gettaskbyid.isLoading, isError: gettaskbyid.isError };
 };
 
 export const useCreateTask = (projectId: string) => {
@@ -46,32 +50,52 @@ export const useCreateTask = (projectId: string) => {
     },
   });
 
-  return { createtask };
+  return { createtask, isPending: createtask.isPending };
 };
 
-export const useUpdateTask = (taskId: string) => {
+export const useUpdateTask = (projectId?: string) => {
   const queryClient = useQueryClient();
 
   const updatetask = useMutation({
-    mutationFn: (taskData: ITaskUpdate) =>
+    mutationFn: ({ taskId, taskData }: { taskId: string; taskData: ITaskUpdate }) =>
       updateTask(taskId, taskData),
+
+    onSuccess: (_, variables) => {
+      if (projectId) {
+        queryClient.invalidateQueries({
+          queryKey: ["projects", projectId, "tasks"],
+        });
+      }
+      queryClient.invalidateQueries({
+        queryKey: ["tasks", variables.taskId],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["projects"],
+      });
+    },
   });
 
-  return { updatetask };
+  return { updatetask, isPending: updatetask.isPending };
 };
 
-export const useDeleteTask = (taskId: string) => {
+export const useDeleteTask = (projectId?: string) => {
   const queryClient = useQueryClient();
 
   const deletetask = useMutation({
-    mutationFn: () => deleteTask(taskId),
+    mutationFn: (taskId: string) => deleteTask(taskId),
 
-    onSuccess: () => {
+    onSuccess: (_, taskId) => {
+      if (projectId) {
+        queryClient.invalidateQueries({
+          queryKey: ["projects", projectId, "tasks"],
+        });
+      }
       queryClient.invalidateQueries({
         queryKey: ["tasks", taskId],
       });
     },
   });
 
-  return { deletetask };
+  return { deletetask, isPending: deletetask.isPending };
 };
+

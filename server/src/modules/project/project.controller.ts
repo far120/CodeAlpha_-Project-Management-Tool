@@ -18,7 +18,7 @@ export const createProject = asyncHandler(async (req: express.Request, res: expr
     });
 });
 export const getProjects = asyncHandler(async (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    const projects = await getProjectsService();
+    const projects = await getProjectsService(req.user.id);
     res.status(200).json({
         status: "success",
         data: projects,

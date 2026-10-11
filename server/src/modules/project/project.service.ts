@@ -13,26 +13,30 @@ export const createProjectService = async (userId: string, project: IProject) =>
         owner: userId,
         members: [userId],
     });
+    await newProject.populate("owner", "firstName lastName email avatar role");
+    await newProject.populate("members", "firstName lastName email avatar role");
     return newProject;
 }
 
-
-
-
-export const getProjectsService = async () => {
+export const getProjectsService = async (userId: string) => {
     //use APIFeatures to filter, sort, and paginate the projects
-    console.log("getProjectsService called");
-    const apiFeatures = new APIFeatures(Project.find(), {})
+    const query = Project.find({ $or: [{ owner: userId }, { members: userId }] })
+        .populate("owner", "firstName lastName email avatar role")
+        .populate("members", "firstName lastName email avatar role");
+    const apiFeatures = new APIFeatures(query, {})
         .filter()
         .sort()
         .search(["name", "description"]);
     await apiFeatures.paginate();
     const projects = await apiFeatures.query;
+    
     return projects;
 }
 
 export const getProjectByIdService = async (projectId: string) => {
-    const project = await Project.findById(projectId);
+    const project = await Project.findById(projectId)
+        .populate("owner", "firstName lastName email avatar role")
+        .populate("members", "firstName lastName email avatar role");
     if (!project) {
         throw new AppError("Project not found", 404);
     }
@@ -40,7 +44,9 @@ export const getProjectByIdService = async (projectId: string) => {
 }
 
 export const updateProjectService = async (projectId: string, project: IProject) => {
-    const updateProject = await Project.findByIdAndUpdate(projectId, project, { new: true });
+    const updateProject = await Project.findByIdAndUpdate(projectId, project, { new: true })
+        .populate("owner", "firstName lastName email avatar role")
+        .populate("members", "firstName lastName email avatar role");
     if (!updateProject) {
         throw new AppError("Project not found", 404);
     }
@@ -51,9 +57,9 @@ export const deleteProjectService = async (projectId: string) => {
     await Comment.deleteMany({
         task: { $in: (await Task.find({ project: projectId })).map(t => t._id) }
     });
-      await Task.deleteMany({
-    project: projectId,
-  });
+    await Task.deleteMany({
+        project: projectId,
+    });
     const deleteProject = await Project.findByIdAndDelete(projectId);
     if (!deleteProject) {
         throw new AppError("Project not found", 404);
@@ -73,11 +79,14 @@ export const addMemberService = async (projectId: string, userId: string) => {
     if (user.isBlocked) {
         throw new AppError("User is not active", 400);
     }
-    if (project.members.includes(userId as any)) {
+    const alreadyMember = project.members.some((m: any) => (m._id ? m._id.toString() : m.toString()) === userId.toString());
+    if (alreadyMember) {
         throw new AppError("User is already a member of the project", 400);
     }
     project.members.push(userId as any);
     await project.save();
+    await project.populate("owner", "firstName lastName email avatar role");
+    await project.populate("members", "firstName lastName email avatar role");
     return project;
 }
 
@@ -86,12 +95,16 @@ export const removeMemberService = async (projectId: string, userId: string) => 
     if (!project) {
         throw new AppError("Project not found", 404);
     }
-    if (!project.members.includes(userId as any)) {
+    const isMember = project.members.some((m: any) => (m._id ? m._id.toString() : m.toString()) === userId.toString());
+    if (!isMember) {
         throw new AppError("User is not a member of the project", 400);
     }
-    project.members = project.members.filter(member => member.toString() !== userId);
+    project.members = project.members.filter(member => (member._id ? member._id.toString() : member.toString()) !== userId);
     await project.save();
+    await project.populate("owner", "firstName lastName email avatar role");
+    await project.populate("members", "firstName lastName email avatar role");
     return project;
 }
+
 
 

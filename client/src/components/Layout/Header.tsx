@@ -56,16 +56,15 @@ export default function Header() {
     userprofile?.firstName && userprofile?.lastName
       ? `${userprofile.firstName[0]}${userprofile.lastName[0]}`.toUpperCase()
       : userprofile?.firstName
-      ? userprofile.firstName.slice(0, 2).toUpperCase()
-      : "U";
+        ? userprofile.firstName.slice(0, 2).toUpperCase()
+        : "U";
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-        scrolled
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${scrolled
           ? "bg-slate-950/85 backdrop-blur-md border-b border-slate-800/80 shadow-xl shadow-slate-950/50"
           : "bg-slate-950/60 backdrop-blur-sm border-b border-slate-900"
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-4">
@@ -73,10 +72,10 @@ export default function Header() {
           <div className="flex items-center gap-8">
             <Link to="/" className="flex items-center gap-2.5 group">
               <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-violet-500 flex items-center justify-center shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-200">
-                <Sparkles className="w-5 h-5 text-white" />
+                FAR
               </div>
               <span className="text-lg font-bold tracking-tight text-white">
-                ELFAR<span className="text-indigo-400 font-normal ml-1">Starter</span>
+                Project Management Tool
               </span>
             </Link>
 
@@ -91,11 +90,10 @@ export default function Header() {
               <div className="hidden sm:flex items-center gap-2">
                 <Link
                   to="/login"
-                  className={`px-3.5 py-1.5 text-sm font-medium rounded-xl transition-all flex items-center gap-1.5 ${
-                    location.pathname === "/login"
+                  className={`px-3.5 py-1.5 text-sm font-medium rounded-xl transition-all flex items-center gap-1.5 ${location.pathname === "/login"
                       ? "bg-slate-800 text-white"
                       : "text-slate-300 hover:text-white hover:bg-slate-800/60"
-                  }`}
+                    }`}
                 >
                   <LogIn className="w-4 h-4" />
                   <span>Login</span>
@@ -141,9 +139,8 @@ export default function Header() {
                       {displayName}
                     </span>
                     <ChevronDown
-                      className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${
-                        menuOpen ? "rotate-180" : ""
-                      }`}
+                      className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${menuOpen ? "rotate-180" : ""
+                        }`}
                     />
                   </button>
 
@@ -167,11 +164,11 @@ export default function Header() {
                         <span>Profile</span>
                       </Link>
                       <Link
-                        to="/settings"
+                        to="/change-password"
                         className="flex w-full items-center gap-2.5 px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-indigo-600/10 hover:text-indigo-400 rounded-xl transition-colors"
                       >
                         <Settings className="w-4 h-4" />
-                        <span>Settings</span>
+                        <span>Change Password</span>
                       </Link>
 
                       <div className="my-1 border-t border-slate-800" />

@@ -15,12 +15,19 @@ export const createTaskService = async (projectId: string, userId: string, task:
     if (!user) {
         throw new AppError("User not found", 404);
     }
-    if (!project.members.includes(userId  as any)) {
+    const isMember =
+        project.members.some((m: any) => (m._id ? m._id.toString() : m.toString()) === userId.toString()) ||
+        (project.owner && project.owner.toString() === userId.toString());
+
+    if (!isMember) {
         throw new AppError("User is not a member of this project", 400);
     }
-    // task.createdBy = userId;
-    const createTask = await Task.create({ ...task, project: projectId , createdBy: userId });
-    return createTask;
+
+    const created = await Task.create({ ...task, project: projectId, createdBy: userId });
+    await created.populate("assignedTo", "firstName lastName email");
+    await created.populate("createdBy", "firstName lastName email");
+    await created.populate("project", "name");
+    return created;
 }
 
 export const getTasksService = async (projectId: string) => {
@@ -59,12 +66,16 @@ export const updateTaskService = async (taskId: string, task: ITask) => {
     if (!atask) {
         throw new AppError("Task not found", 404);
     }
-    const updateTask = await Task.findByIdAndUpdate(taskId, task, { new: true });
+    const updateTask = await Task.findByIdAndUpdate(taskId, task, { new: true })
+      .populate("assignedTo", "firstName lastName email")
+      .populate("createdBy", "firstName lastName email")
+      .populate("project", "name");
     if (!updateTask) {
         throw new AppError("Task not found", 404);
     }
     return updateTask;
 }
+
 
 export const deleteTaskService = async (taskId: string) => {
     const deletecomments = await Comment.deleteMany({

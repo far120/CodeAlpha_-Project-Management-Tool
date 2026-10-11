@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 import User from "../modules/users/user.model";
-import userAIService from "../integrations/ai/services/user/userAI.service";
+
 
 const USERS_COUNT = 20;
 
@@ -35,13 +35,7 @@ const seedUsers = async () => {
   }));
 
   const createdUsers = await User.create(users);
-
-  for (const user of createdUsers) {
-    const summary = await userAIService.analyzeUser(user._id.toString());
-    await User.findByIdAndUpdate(user._id, { summary });
-  }
-
-  console.log(`✅ ${USERS_COUNT} users created successfully`);
+  console.log(`✅ ${createdUsers.length} users created successfully`);
 };
 
 export default seedUsers;

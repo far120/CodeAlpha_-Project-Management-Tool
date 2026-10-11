@@ -29,10 +29,10 @@ export default function Footer() {
           <div className="md:col-span-4 space-y-4">
             <Link to="/" className="flex items-center gap-2.5 group">
               <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-violet-500 flex items-center justify-center shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-200">
-                <Sparkles className="w-5 h-5 text-white" />
+                FAR
               </div>
               <span className="text-xl font-bold tracking-tight text-white">
-                ELFAR<span className="text-indigo-400 font-normal ml-1">Starter</span>
+                Project Management Tool
               </span>
             </Link>
             <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
@@ -144,4 +144,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+}

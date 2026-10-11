@@ -25,17 +25,23 @@ export const useGetProjects = () => {
     queryFn: getProjects,
   });
 
-  return { getprojects };
+  const projects = Array.isArray(getprojects.data)
+    ? getprojects.data
+    : (getprojects.data as any)?.data || [];
+
+  return { getprojects, projects, isLoading: getprojects.isLoading, isError: getprojects.isError };
 };
 
 export const useGetProjectById = (projectId: string) => {
   const getprojectid = useQuery({
     queryKey: ["projects", projectId],
     queryFn: () => getProjectById(projectId),
-    enabled: !!projectId,
+    enabled: Boolean(projectId),
   });
 
-  return { getprojectid };
+  const project = getprojectid.data;
+
+  return { getprojectid, project, isLoading: getprojectid.isLoading, isError: getprojectid.isError };
 };
 
 export const useCreateProject = () => {
@@ -52,7 +58,7 @@ export const useCreateProject = () => {
     },
   });
 
-  return { createproject };
+  return { createproject, isPending: createproject.isPending };
 };
 
 export const useUpdateProject = (projectId: string) => {
@@ -73,14 +79,14 @@ export const useUpdateProject = (projectId: string) => {
     },
   });
 
-  return { updateproject };
+  return { updateproject, isPending: updateproject.isPending };
 };
 
 export const useDeleteProject = () => {
   const queryClient = useQueryClient();
 
   const deleteproject = useMutation({
-    mutationFn: deleteProject,
+    mutationFn: (projectId: string) => deleteProject(projectId),
 
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -89,7 +95,7 @@ export const useDeleteProject = () => {
     },
   });
 
-  return { deleteproject };
+  return { deleteproject, isPending: deleteproject.isPending };
 };
 
 export const useAddMember = (projectId: string) => {
@@ -110,7 +116,7 @@ export const useAddMember = (projectId: string) => {
     },
   });
 
-  return { addmember };
+  return { addmember, isPending: addmember.isPending };
 };
 
 export const useRemoveMember = (projectId: string) => {
@@ -131,6 +137,7 @@ export const useRemoveMember = (projectId: string) => {
     },
   });
 
-  return { removemember };
+  return { removemember, isPending: removemember.isPending };
 };
+
 
