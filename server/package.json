@@ -20,6 +20,7 @@
     "@types/morgan": "^1.9.10",
     "@types/node": "^26.5.0",
     "@types/winston": "^2.4.4",
+    "@vercel/node": "^23.0.1",
     "tsx": "^4.23.13",
     "typescript": "^7.0.2"
   },
