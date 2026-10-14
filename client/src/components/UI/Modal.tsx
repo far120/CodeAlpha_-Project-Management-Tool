@@ -41,24 +41,24 @@ export default function Modal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-900/40 dark:bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div
-        className={`w-full ${maxWidthMap[maxWidth]} bg-slate-900/95 backdrop-blur-xl border border-slate-800 rounded-3xl shadow-2xl shadow-slate-950/80 overflow-hidden transform transition-all animate-in zoom-in-95 duration-200`}
+        className={`w-full ${maxWidthMap[maxWidth]} bg-white dark:bg-slate-900/95 backdrop-blur-xl border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl shadow-slate-900/10 dark:shadow-slate-950/80 overflow-hidden transform transition-all animate-in zoom-in-95 duration-200`}
         onClick={(e) => e.stopPropagation()}
       >
         {title && (
-          <div className="flex items-start justify-between p-6 border-b border-slate-800/80">
+          <div className="flex items-start justify-between p-6 border-b border-slate-100 dark:border-slate-800/80">
             <div>
-              <h3 className="text-xl font-bold tracking-tight text-white">{title}</h3>
+              <h3 className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">{title}</h3>
               {description && (
-                <p className="text-xs text-slate-400 mt-1 leading-relaxed">{description}</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">{description}</p>
               )}
             </div>
             <button
               onClick={onClose}
-              className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors focus:outline-none"
+              className="p-1.5 rounded-xl text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-none"
               aria-label="Close"
             >
               <X className="w-5 h-5" />
@@ -66,7 +66,7 @@ export default function Modal({
           </div>
         )}
 
-        <div className="p-6 max-h-[80vh] overflow-y-auto custom-scrollbar">{children}</div>
+        <div className="p-6 max-h-[80vh] overflow-y-auto custom-scrollbar text-slate-800 dark:text-slate-200">{children}</div>
       </div>
     </div>
   );

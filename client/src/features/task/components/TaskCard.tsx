@@ -25,17 +25,17 @@ interface TaskCardProps {
 export const priorityConfig = {
   HIGH: {
     label: "High Priority",
-    bgClass: "bg-rose-500/10 text-rose-400 border-rose-500/20",
+    bgClass: "bg-rose-500/10 text-rose-500 dark:text-rose-400 border-rose-500/20",
     dotClass: "bg-rose-500",
   },
   MEDIUM: {
     label: "Medium Priority",
-    bgClass: "bg-amber-500/10 text-amber-400 border-amber-500/20",
+    bgClass: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20",
     dotClass: "bg-amber-500",
   },
   LOW: {
     label: "Low Priority",
-    bgClass: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+    bgClass: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
     dotClass: "bg-emerald-500",
   },
 };
@@ -61,7 +61,6 @@ export default function TaskCard({
     : typeof task.assignedTo === "string" && task.assignedTo
       ? "Assigned"
       : "Unassigned";
-
 
   const assigneeInitials = assigneeObj?.firstName
     ? `${assigneeObj.firstName[0]}${assigneeObj.lastName?.[0] || ""}`.toUpperCase()
@@ -93,7 +92,7 @@ export default function TaskCard({
     <>
       <div
         onClick={() => onOpenDetails(task)}
-        className="group relative bg-slate-900/90 hover:bg-slate-900 border border-slate-800 hover:border-indigo-500/40 rounded-2xl p-4 shadow-lg hover:shadow-xl hover:shadow-indigo-950/20 transition-all duration-200 cursor-pointer flex flex-col justify-between gap-3"
+        className="group relative bg-white dark:bg-slate-900/90 hover:bg-slate-50 dark:hover:bg-slate-900 border border-slate-200/90 dark:border-slate-800 hover:border-indigo-500/40 rounded-2xl p-4 shadow-sm hover:shadow-md dark:shadow-lg dark:hover:shadow-xl dark:hover:shadow-indigo-950/20 transition-all duration-200 cursor-pointer flex flex-col justify-between gap-3"
       >
         <div className="space-y-2.5">
           {/* Priority Badge & Card Menu */}
@@ -114,7 +113,7 @@ export default function TaskCard({
               >
                 <button
                   onClick={() => setMenuOpen(!menuOpen)}
-                  className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100"
+                  className="p-1 rounded-lg text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100"
                   aria-label="Task options"
                 >
                   <MoreVertical className="w-4 h-4" />
@@ -122,7 +121,7 @@ export default function TaskCard({
 
                 {menuOpen && (
                   <div
-                    className="absolute right-0 mt-1 w-36 rounded-xl border border-slate-800 bg-slate-900/95 backdrop-blur-xl p-1 shadow-2xl z-20"
+                    className="absolute right-0 mt-1 w-36 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl p-1 shadow-xl dark:shadow-2xl z-20 animate-in fade-in"
                     onMouseLeave={() => setMenuOpen(false)}
                   >
                     <button
@@ -130,9 +129,9 @@ export default function TaskCard({
                         setMenuOpen(false);
                         onEdit(task);
                       }}
-                      className="w-full flex items-center gap-2 px-2.5 py-1.5 text-xs text-slate-300 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
+                      className="w-full flex items-center gap-2 px-2.5 py-1.5 text-xs text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
                     >
-                      <Edit2 className="w-3.5 h-3.5 text-indigo-400" />
+                      <Edit2 className="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400" />
                       <span>Edit</span>
                     </button>
                     <button
@@ -140,9 +139,9 @@ export default function TaskCard({
                         setMenuOpen(false);
                         setConfirmDeleteOpen(true);
                       }}
-                      className="w-full flex items-center gap-2 px-2.5 py-1.5 text-xs text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
+                      className="w-full flex items-center gap-2 px-2.5 py-1.5 text-xs text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-lg transition-colors"
                     >
-                      <Trash2 className="w-3.5 h-3.5 text-red-400" />
+                      <Trash2 className="w-3.5 h-3.5 text-red-500 dark:text-red-400" />
                       <span>Delete</span>
                     </button>
                   </div>
@@ -152,28 +151,28 @@ export default function TaskCard({
           </div>
 
           {/* Title */}
-          <h4 className="text-sm font-semibold text-slate-100 group-hover:text-indigo-400 transition-colors line-clamp-2 leading-snug">
+          <h4 className="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-2 leading-snug">
             {task.title}
           </h4>
 
           {/* Description */}
           {task.description && (
-            <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+            <p className="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
               {task.description}
             </p>
           )}
         </div>
 
         {/* Card Footer: Assignee, Due Date & Quick Status Shift */}
-        <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2 text-xs">
+        <div className="pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between gap-2 text-xs">
           {/* Assignee */}
-          <div className="flex items-center gap-1.5 text-slate-400 truncate max-w-[120px]">
+          <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 truncate max-w-[120px]">
             {assigneeObj ? (
-              <div className="w-5 h-5 rounded-md bg-gradient-to-tr from-indigo-500/20 to-violet-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-300 text-[10px] font-bold shrink-0">
+              <div className="w-5 h-5 rounded-md bg-gradient-to-tr from-indigo-500/10 to-violet-500/10 dark:from-indigo-500/20 dark:to-violet-500/20 border border-indigo-200 dark:border-indigo-500/30 flex items-center justify-center text-indigo-600 dark:text-indigo-300 text-[10px] font-bold shrink-0">
                 {assigneeInitials}
               </div>
             ) : (
-              <User className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+              <User className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500 shrink-0" />
             )}
             <span className="truncate text-[11px]">{assigneeName}</span>
           </div>
@@ -182,13 +181,14 @@ export default function TaskCard({
           <div className="flex items-center gap-1.5">
             {dueDateFormatted && (
               <div
-                className={`flex items-center gap-1 px-1.5 py-0.5 rounded text-[11px] font-medium ${isOverdue
-                    ? "bg-red-500/10 text-red-400 border border-red-500/20"
-                    : "text-slate-400"
-                  }`}
+                className={`flex items-center gap-1 px-1.5 py-0.5 rounded text-[11px] font-medium ${
+                  isOverdue
+                    ? "bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20"
+                    : "text-slate-500 dark:text-slate-400"
+                }`}
                 title={isOverdue ? "Overdue" : "Due Date"}
               >
-                {isOverdue ? <Clock className="w-3 h-3 text-red-400" /> : <Calendar className="w-3 h-3" />}
+                {isOverdue ? <Clock className="w-3 h-3 text-red-500 dark:text-red-400" /> : <Calendar className="w-3 h-3 text-slate-400" />}
                 <span>{dueDateFormatted}</span>
               </div>
             )}
@@ -199,7 +199,7 @@ export default function TaskCard({
                 {task.status !== "TODO" && (
                   <button
                     onClick={handlePrevStatus}
-                    className="p-1 rounded hover:bg-slate-800 text-slate-400 hover:text-slate-200 transition-colors"
+                    className="p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors"
                     title="Move back"
                   >
                     <ArrowLeft className="w-3 h-3" />
@@ -208,13 +208,13 @@ export default function TaskCard({
                 {task.status !== "DONE" ? (
                   <button
                     onClick={handleNextStatus}
-                    className="p-1 rounded hover:bg-indigo-500/20 text-indigo-400 hover:text-indigo-300 transition-colors"
+                    className="p-1 rounded hover:bg-indigo-50 dark:hover:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors"
                     title="Advance status"
                   >
                     <ArrowRight className="w-3 h-3" />
                   </button>
                 ) : (
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 ml-1" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 dark:text-emerald-400 ml-1" />
                 )}
               </div>
             )}

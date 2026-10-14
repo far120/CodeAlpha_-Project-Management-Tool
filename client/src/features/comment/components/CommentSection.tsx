@@ -73,10 +73,10 @@ export default function CommentSection({ taskId }: CommentSectionProps) {
   };
 
   return (
-    <div className="space-y-4 pt-4 border-t border-slate-800/80">
+    <div className="space-y-4 pt-4 border-t border-slate-200 dark:border-slate-800/80">
       <div className="flex items-center justify-between">
-        <h4 className="text-sm font-semibold text-slate-200 flex items-center gap-2">
-          <MessageSquare className="w-4 h-4 text-indigo-400" />
+        <h4 className="text-sm font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2">
+          <MessageSquare className="w-4 h-4 text-indigo-500 dark:text-indigo-400" />
           <span>Activity & Comments ({comments.length})</span>
         </h4>
       </div>
@@ -89,7 +89,7 @@ export default function CommentSection({ taskId }: CommentSectionProps) {
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
             placeholder="Write a comment or status update..."
-            className="w-full px-3.5 py-2.5 bg-slate-950/70 border border-slate-800 rounded-2xl text-slate-100 placeholder-slate-500 text-xs focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all resize-none"
+            className="w-full px-3.5 py-2.5 bg-white dark:bg-slate-950/70 border border-slate-300 dark:border-slate-800 rounded-2xl text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 text-xs focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all resize-none shadow-sm"
           />
         </div>
         <div className="flex items-end">
@@ -111,15 +111,15 @@ export default function CommentSection({ taskId }: CommentSectionProps) {
       <div className="space-y-2.5 max-h-64 overflow-y-auto pr-1 custom-scrollbar">
         {isLoading ? (
           <div className="flex items-center justify-center p-6 text-slate-500 text-xs gap-2">
-            <Loader2 className="w-4 h-4 animate-spin text-indigo-400" />
+            <Loader2 className="w-4 h-4 animate-spin text-indigo-500 dark:text-indigo-400" />
             <span>Loading discussion...</span>
           </div>
         ) : isError ? (
-          <div className="p-4 text-center text-red-400 text-xs">
+          <div className="p-4 text-center text-red-500 dark:text-red-400 text-xs">
             Could not load comments for this task.
           </div>
         ) : comments.length === 0 ? (
-          <div className="p-6 text-center text-slate-500 text-xs rounded-2xl bg-slate-950/40 border border-dashed border-slate-800">
+          <div className="p-6 text-center text-slate-500 text-xs rounded-2xl bg-slate-50 dark:bg-slate-950/40 border border-dashed border-slate-300 dark:border-slate-800">
             No comments yet. Start the conversation!
           </div>
         ) : (

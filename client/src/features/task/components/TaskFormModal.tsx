@@ -112,11 +112,11 @@ export default function TaskFormModal({
       <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4">
         {/* Title */}
         <div>
-          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5 ml-1">
-            Task Title <span className="text-red-400">*</span>
+          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5 ml-1">
+            Task Title <span className="text-red-500">*</span>
           </label>
           <div className="relative flex items-center">
-            <CheckSquare className="absolute left-3.5 w-4 h-4 text-slate-500" />
+            <CheckSquare className="absolute left-3.5 w-4 h-4 text-slate-400 dark:text-slate-500" />
             <input
               type="text"
               {...register("title", {
@@ -125,21 +125,21 @@ export default function TaskFormModal({
                 maxLength: { value: 150, message: "Title cannot exceed 150 characters" },
               })}
               placeholder="e.g. Design auth & onboarding screens"
-              className="w-full pl-10 pr-4 py-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all text-sm"
+              className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-950/60 border border-slate-300 dark:border-slate-800 rounded-xl text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all text-sm shadow-sm"
             />
           </div>
           {errors.title && (
-            <p className="text-xs text-red-400 mt-1 ml-1">{errors.title.message}</p>
+            <p className="text-xs text-red-500 mt-1 ml-1">{errors.title.message}</p>
           )}
         </div>
 
         {/* Description */}
         <div>
-          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5 ml-1">
+          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5 ml-1">
             Description
           </label>
           <div className="relative flex items-start">
-            <AlignLeft className="absolute left-3.5 top-3 w-4 h-4 text-slate-500" />
+            <AlignLeft className="absolute left-3.5 top-3 w-4 h-4 text-slate-400 dark:text-slate-500" />
             <textarea
               rows={3}
               {...register("description", {
@@ -149,11 +149,11 @@ export default function TaskFormModal({
                 },
               })}
               placeholder="Detailed description, requirements, or acceptance criteria..."
-              className="w-full pl-10 pr-4 py-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all text-sm resize-none"
+              className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-950/60 border border-slate-300 dark:border-slate-800 rounded-xl text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all text-sm resize-none shadow-sm"
             />
           </div>
           {errors.description && (
-            <p className="text-xs text-red-400 mt-1 ml-1">{errors.description.message}</p>
+            <p className="text-xs text-red-500 mt-1 ml-1">{errors.description.message}</p>
           )}
         </div>
 
@@ -161,14 +161,14 @@ export default function TaskFormModal({
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Status */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5 ml-1">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5 ml-1">
               Status
             </label>
             <div className="relative flex items-center">
-              <Activity className="absolute left-3.5 w-4 h-4 text-slate-500 pointer-events-none" />
+              <Activity className="absolute left-3.5 w-4 h-4 text-slate-400 dark:text-slate-500 pointer-events-none" />
               <select
                 {...register("status")}
-                className="w-full pl-10 pr-4 py-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-slate-100 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 appearance-none"
+                className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-950/60 border border-slate-300 dark:border-slate-800 rounded-xl text-slate-900 dark:text-slate-100 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 appearance-none shadow-sm"
               >
                 <option value="TODO">To Do</option>
                 <option value="IN_PROGRESS">In Progress</option>
@@ -179,14 +179,14 @@ export default function TaskFormModal({
 
           {/* Priority */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5 ml-1">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5 ml-1">
               Priority
             </label>
             <div className="relative flex items-center">
-              <Flag className="absolute left-3.5 w-4 h-4 text-slate-500 pointer-events-none" />
+              <Flag className="absolute left-3.5 w-4 h-4 text-slate-400 dark:text-slate-500 pointer-events-none" />
               <select
                 {...register("priority")}
-                className="w-full pl-10 pr-4 py-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-slate-100 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 appearance-none"
+                className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-950/60 border border-slate-300 dark:border-slate-800 rounded-xl text-slate-900 dark:text-slate-100 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 appearance-none shadow-sm"
               >
                 <option value="LOW">Low</option>
                 <option value="MEDIUM">Medium</option>
@@ -200,14 +200,14 @@ export default function TaskFormModal({
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Assignee */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5 ml-1">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5 ml-1">
               Assign To
             </label>
             <div className="relative flex items-center">
-              <User className="absolute left-3.5 w-4 h-4 text-slate-500 pointer-events-none" />
+              <User className="absolute left-3.5 w-4 h-4 text-slate-400 dark:text-slate-500 pointer-events-none" />
               <select
                 {...register("assignedTo")}
-                className="w-full pl-10 pr-4 py-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-slate-100 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 appearance-none"
+                className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-950/60 border border-slate-300 dark:border-slate-800 rounded-xl text-slate-900 dark:text-slate-100 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 appearance-none shadow-sm"
               >
                 <option value="">Unassigned</option>
                 {members.map((member) => {
@@ -222,29 +222,28 @@ export default function TaskFormModal({
                     </option>
                   );
                 })}
-
               </select>
             </div>
           </div>
 
           {/* Due Date */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5 ml-1">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5 ml-1">
               Due Date
             </label>
             <div className="relative flex items-center">
-              <Calendar className="absolute left-3.5 w-4 h-4 text-slate-500 pointer-events-none" />
+              <Calendar className="absolute left-3.5 w-4 h-4 text-slate-400 dark:text-slate-500 pointer-events-none" />
               <input
                 type="date"
                 {...register("dueDate")}
-                className="w-full pl-10 pr-4 py-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-slate-100 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-950/60 border border-slate-300 dark:border-slate-800 rounded-xl text-slate-900 dark:text-slate-100 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 shadow-sm"
               />
             </div>
           </div>
         </div>
 
         {/* Action buttons */}
-        <div className="pt-4 flex items-center justify-end gap-3 border-t border-slate-800/80">
+        <div className="pt-4 flex items-center justify-end gap-3 border-t border-slate-200 dark:border-slate-800/80">
           <Button type="button" variant="outline" onClick={onClose} disabled={isLoading}>
             Cancel
           </Button>

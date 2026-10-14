@@ -1,80 +1,101 @@
+
 import { Link } from "react-router-dom";
 import {
-  FaFacebookF,
-  FaTwitter,
-  FaInstagram,
-  FaLinkedinIn,
   FaGithub,
+  FaLinkedinIn,
+  FaCode,
+  FaLaptopCode,
+  FaEnvelope,
 } from "react-icons/fa";
-import { Sparkles } from "lucide-react";
 
 const socialLinks = [
-  { Icon: FaGithub, href: "#", label: "GitHub" },
-  { Icon: FaTwitter, href: "#", label: "Twitter" },
-  { Icon: FaLinkedinIn, href: "#", label: "LinkedIn" },
-  { Icon: FaInstagram, href: "#", label: "Instagram" },
-  { Icon: FaFacebookF, href: "#", label: "Facebook" },
+  {
+    Icon: FaGithub,
+    href: "https://github.com/far120",
+    label: "GitHub",
+  },
+  {
+    Icon: FaLinkedinIn,
+    href: "https://www.linkedin.com/in/mostafa-mahmoud-elfar-6a67732b/",
+    label: "LinkedIn",
+  },
+  {
+    Icon: FaCode,
+    href: "https://codeforces.com/profile/mostafaelfar20",
+    label: "Codeforces",
+  },
 ];
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-slate-950 text-slate-400 border-t border-slate-800/80 relative overflow-hidden">
+    <footer className="relative w-full overflow-hidden border-t border-slate-200 bg-slate-100 text-slate-600 transition-colors duration-200 dark:border-slate-800/80 dark:bg-slate-950 dark:text-slate-400">
       {/* Background ambient lighting */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-violet-600/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="pointer-events-none absolute left-1/4 top-0 h-96 w-96 rounded-full bg-indigo-500/5 blur-3xl dark:bg-indigo-600/5" />
+      <div className="pointer-events-none absolute bottom-0 right-1/4 h-96 w-96 rounded-full bg-violet-500/5 blur-3xl dark:bg-violet-600/5" />
 
-      <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8 lg:py-16 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-12 lg:gap-12">
           {/* Brand Column */}
-          <div className="md:col-span-4 space-y-4">
-            <Link to="/" className="flex items-center gap-2.5 group">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-violet-500 flex items-center justify-center shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-200">
-                FAR
+          <div className="space-y-4 md:col-span-5">
+            <Link to="/" className="group flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-violet-500 text-sm font-bold text-white shadow-md shadow-indigo-500/20 transition-transform duration-200 group-hover:scale-105">
+                ME
               </div>
-              <span className="text-xl font-bold tracking-tight text-white">
-                Project Management Tool
-              </span>
+
+              <div>
+                <span className="block text-xl font-bold tracking-tight text-slate-900 dark:text-white">
+                  Mostafa Elfar
+                </span>
+                <span className="text-xs font-medium text-indigo-600 dark:text-indigo-400">
+                  Full-Stack Developer
+                </span>
+              </div>
             </Link>
-            <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
-              Empowering developers to build full-stack web applications with modern architecture, maximum speed, and uncompromised elegance.
+
+            <p className="max-w-sm text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+              I'm a Computer Science graduate passionate about building
+              modern web applications using React, Node.js, Express.js,
+              and MongoDB. I enjoy solving problems, writing clean code,
+              and continuously improving my software engineering skills.
             </p>
 
-            {/* Social Icons */}
+            {/* Social Links */}
             <div className="flex gap-2 pt-2">
-              {socialLinks.map((social, index) => {
-                const Icon = social.Icon;
-                return (
-                  <a
-                    key={index}
-                    href={social.href}
-                    aria-label={social.label}
-                    className="w-9 h-9 flex items-center justify-center rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:border-indigo-500/50 hover:bg-indigo-600/10 transition-all duration-200"
-                  >
-                    <Icon className="w-4 h-4" />
-                  </a>
-                );
-              })}
+              {socialLinks.map(({ Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  title={label}
+                  className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-500 shadow-sm transition-all duration-200 hover:border-indigo-500/50 hover:bg-indigo-50 hover:text-indigo-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400 dark:hover:bg-indigo-600/10 dark:hover:text-white"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Links Grid */}
-          <div className="md:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-8">
-            {/* Product Column */}
+          {/* Navigation Links */}
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:col-span-7">
+            {/* Explore */}
             <div>
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-4">
-                Product
+              <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider text-slate-900 dark:text-slate-200">
+                Explore
               </h3>
-              <ul className="space-y-2.5">
+
+              <ul className="space-y-3">
                 {[
-                  { name: "Features", to: "/features" },
-                  { name: "Pricing", to: "/pricing" },
-                  { name: "Documentation", to: "/docs" },
-                  { name: "API Reference", to: "/api" },
+                  { name: "Home", to: "/" },
+                  { name: "About Me", to: "/about" },
+                  { name: "Projects", to: "/projects" },
+                  { name: "Skills", to: "/skills" },
                 ].map((item) => (
                   <li key={item.name}>
                     <Link
                       to={item.to}
-                      className="text-sm text-slate-400 hover:text-indigo-400 transition-colors"
+                      className="text-sm transition-colors hover:text-indigo-600 dark:hover:text-indigo-400"
                     >
                       {item.name}
                     </Link>
@@ -83,62 +104,85 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Company Column */}
+            {/* Technologies */}
             <div>
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-4">
-                Company
+              <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider text-slate-900 dark:text-slate-200">
+                Technologies
               </h3>
-              <ul className="space-y-2.5">
+
+              <ul className="space-y-3">
                 {[
-                  { name: "About Us", to: "/about" },
-                  { name: "Careers", to: "/careers" },
-                  { name: "Blog", to: "/blog" },
-                  { name: "Contact", to: "/contact" },
-                ].map((item) => (
-                  <li key={item.name}>
-                    <Link
-                      to={item.to}
-                      className="text-sm text-slate-400 hover:text-indigo-400 transition-colors"
-                    >
-                      {item.name}
-                    </Link>
+                  "React.js",
+                  "Next.js",
+                  "Node.js",
+                  "Express.js",
+                  "MongoDB",
+                  "TypeScript",
+                ].map((technology) => (
+                  <li
+                    key={technology}
+                    className="text-sm text-slate-600 dark:text-slate-400"
+                  >
+                    {technology}
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Legal & Safety Column */}
+            {/* Contact */}
             <div>
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-4">
-                Legal & Safety
+              <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider text-slate-900 dark:text-slate-200">
+                Get in Touch
               </h3>
-              <ul className="space-y-2.5">
-                {[
-                  { name: "Privacy Policy", to: "/privacy" },
-                  { name: "Terms of Service", to: "/terms" },
-                  { name: "Security", to: "/security" },
-                ].map((item) => (
-                  <li key={item.name}>
-                    <Link
-                      to={item.to}
-                      className="text-sm text-slate-400 hover:text-indigo-400 transition-colors"
-                    >
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
+
+              <ul className="space-y-3">
+                <li>
+                  <a
+                    href="https://github.com/far120"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm transition-colors hover:text-indigo-600 dark:hover:text-indigo-400"
+                  >
+                    <FaGithub className="h-4 w-4" />
+                    GitHub
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="https://www.linkedin.com/in/mostafa-mahmoud-elfar-6a67732b/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm transition-colors hover:text-indigo-600 dark:hover:text-indigo-400"
+                  >
+                    <FaLinkedinIn className="h-4 w-4" />
+                    LinkedIn
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    href="mailto:YOUR_EMAIL@example.com"
+                    className="flex items-center gap-2 text-sm transition-colors hover:text-indigo-600 dark:hover:text-indigo-400"
+                  >
+                    <FaEnvelope className="h-4 w-4" />
+                    Email Me
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} ELFAR Starter. All rights reserved.</p>
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-200 pt-6 text-center text-xs text-slate-500 dark:border-slate-800/80 sm:flex-row sm:text-left">
+          <p>
+            © {new Date().getFullYear()} Mostafa Elfar. All rights reserved.
+          </p>
 
-          <div className="flex items-center gap-2 bg-slate-900/60 border border-slate-800/80 px-3 py-1.5 rounded-full text-slate-400">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>All systems operational</span>
+          <div className="flex items-center gap-2">
+            <FaLaptopCode className="h-4 w-4 text-indigo-500" />
+            <span>Designed & Built with React and Tailwind CSS</span>
           </div>
         </div>
       </div>

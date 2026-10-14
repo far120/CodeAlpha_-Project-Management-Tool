@@ -47,7 +47,6 @@ export default function TaskDetailsModal({
     ? "Assigned"
     : "Unassigned";
 
-
   const creatorObj: ITaskUser | null =
     typeof task.createdBy === "object" ? task.createdBy : null;
   const creatorName = creatorObj
@@ -75,7 +74,7 @@ export default function TaskDetailsModal({
       <Modal isOpen={isOpen} onClose={onClose} maxWidth="2xl">
         <div className="space-y-6">
           {/* Header Bar */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-800/80">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100 dark:border-slate-800/80">
             <div className="flex items-center gap-2.5 flex-wrap">
               {/* Priority */}
               <span
@@ -91,7 +90,7 @@ export default function TaskDetailsModal({
                   value={task.status}
                   onChange={(e) => handleStatusSelect(e.target.value as TaskStatus)}
                   disabled={!canManage}
-                  className="px-2.5 py-1 bg-slate-950 border border-slate-800 rounded-full text-xs font-medium text-slate-200 focus:outline-none focus:border-indigo-500 disabled:opacity-80"
+                  className="px-2.5 py-1 bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-full text-xs font-medium text-slate-800 dark:text-slate-200 focus:outline-none focus:border-indigo-500 disabled:opacity-80 shadow-sm"
                 >
                   <option value="TODO">To Do</option>
                   <option value="IN_PROGRESS">In Progress</option>
@@ -125,26 +124,26 @@ export default function TaskDetailsModal({
 
           {/* Task Title & Description */}
           <div className="space-y-3">
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white leading-snug">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white leading-snug">
               {task.title}
             </h2>
-            <p className="text-sm text-slate-300 leading-relaxed whitespace-pre-wrap bg-slate-950/40 p-4 rounded-2xl border border-slate-800/80">
+            <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-wrap bg-slate-50 dark:bg-slate-950/40 p-4 rounded-2xl border border-slate-200 dark:border-slate-800/80">
               {task.description || "No description provided for this task."}
             </p>
           </div>
 
           {/* Meta Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3.5 bg-slate-950/60 border border-slate-800 rounded-2xl text-xs">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3.5 bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-2xl text-xs shadow-sm">
             {/* Assignee */}
             <div className="flex items-center gap-2.5">
-              <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-400">
+              <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400">
                 <User className="w-4 h-4" />
               </div>
               <div>
-                <p className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold">
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">
                   Assignee
                 </p>
-                <p className="text-slate-200 font-medium truncate">{assigneeName}</p>
+                <p className="text-slate-800 dark:text-slate-200 font-medium truncate">{assigneeName}</p>
               </div>
             </div>
 
@@ -153,19 +152,19 @@ export default function TaskDetailsModal({
               <div
                 className={`p-2 rounded-xl ${
                   isOverdue
-                    ? "bg-red-500/10 text-red-400"
-                    : "bg-slate-800 text-slate-400"
+                    ? "bg-red-500/10 text-red-600 dark:text-red-400"
+                    : "bg-slate-200/80 dark:bg-slate-800 text-slate-600 dark:text-slate-400"
                 }`}
               >
                 {isOverdue ? <AlertCircle className="w-4 h-4" /> : <Calendar className="w-4 h-4" />}
               </div>
               <div>
-                <p className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold">
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">
                   Due Date
                 </p>
                 <p
                   className={`font-medium ${
-                    isOverdue ? "text-red-400" : "text-slate-200"
+                    isOverdue ? "text-red-600 dark:text-red-400" : "text-slate-800 dark:text-slate-200"
                   }`}
                 >
                   {dueDateFormatted}
@@ -175,14 +174,14 @@ export default function TaskDetailsModal({
 
             {/* Creator / Status */}
             <div className="flex items-center gap-2.5">
-              <div className="p-2 rounded-xl bg-violet-500/10 text-violet-400">
+              <div className="p-2 rounded-xl bg-violet-500/10 text-violet-600 dark:text-violet-400">
                 <Activity className="w-4 h-4" />
               </div>
               <div>
-                <p className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold">
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">
                   Reporter
                 </p>
-                <p className="text-slate-200 font-medium truncate">{creatorName}</p>
+                <p className="text-slate-800 dark:text-slate-200 font-medium truncate">{creatorName}</p>
               </div>
             </div>
           </div>

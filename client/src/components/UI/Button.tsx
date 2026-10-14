@@ -31,11 +31,15 @@ export default function Button({
 
   const variantClasses = {
     primary:
-      "bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white shadow-lg shadow-indigo-600/25",
-    secondary: "bg-slate-800 hover:bg-slate-700/80 text-slate-200 border border-slate-700/60",
-    danger: "bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30",
-    outline: "border border-slate-700 hover:border-slate-600 text-slate-300 hover:text-white hover:bg-slate-800/60",
-    ghost: "text-slate-400 hover:text-white hover:bg-slate-800/60",
+      "bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white shadow-md shadow-indigo-600/25",
+    secondary:
+      "bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700/80 text-slate-700 dark:text-slate-200 border border-slate-300/80 dark:border-slate-700/60 shadow-sm",
+    danger:
+      "bg-red-500/10 hover:bg-red-500/20 text-red-600 dark:text-red-400 border border-red-500/30",
+    outline:
+      "border border-slate-300 dark:border-slate-700 hover:border-slate-400 dark:hover:border-slate-600 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 shadow-sm",
+    ghost:
+      "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60",
   };
 
   return (

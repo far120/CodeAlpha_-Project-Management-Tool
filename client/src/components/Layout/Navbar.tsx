@@ -99,8 +99,8 @@ export default function Navbar({
               vertical ? "w-full py-2.5 text-base rounded-2xl" : ""
             } ${
               isActive
-                ? "text-indigo-400 bg-indigo-500/10 font-semibold border border-indigo-500/20 shadow-sm"
-                : "text-slate-300 hover:text-white hover:bg-slate-800/60"
+                ? "text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-500/10 font-semibold border border-indigo-200 dark:border-indigo-500/20 shadow-sm"
+                : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
             }`}
           >
             {link.icon && <span className="shrink-0">{link.icon}</span>}

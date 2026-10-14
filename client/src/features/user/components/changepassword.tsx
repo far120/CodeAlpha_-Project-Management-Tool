@@ -34,7 +34,7 @@ export default function ChangePassword() {
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const {register,handleSubmit,formState: { errors },reset,watch} = useForm<ChangePasswordFormInputs>();
+  const { register, handleSubmit, formState: { errors }, reset, watch } = useForm<ChangePasswordFormInputs>();
 
   const newPasswordValue = watch("newPassword");
 
@@ -59,35 +59,35 @@ export default function ChangePassword() {
     "Failed to update password. Please check your old password.";
 
   return (
-    <div className="min-h-screen py-10 px-4 sm:px-6 lg:px-8 selection:bg-indigo-500 selection:text-white flex flex-col items-center justify-center">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 py-10 px-4 sm:px-6 lg:px-8 selection:bg-indigo-500 selection:text-white flex flex-col items-center justify-center transition-colors duration-200">
       {/* Ambient background blur circles */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-1/3 w-96 h-96 bg-indigo-600/15 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-1/3 w-96 h-96 bg-violet-600/15 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-1/3 w-96 h-96 bg-indigo-500/10 dark:bg-indigo-600/15 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-1/3 w-96 h-96 bg-violet-500/10 dark:bg-violet-600/15 rounded-full blur-3xl" />
       </div>
 
       <div className="relative w-full max-w-xl mx-auto space-y-4">
         {/* Back Link */}
         <Link
           to="/profile"
-          className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-white transition-colors ml-1"
+          className="inline-flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors ml-1"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Profile</span>
         </Link>
 
         {/* Change Password Card */}
-        <div className="bg-slate-900/90 backdrop-blur-xl border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl shadow-slate-950/60 w-full">
+        <div className="bg-white/80 dark:bg-slate-900/90 backdrop-blur-xl border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl dark:shadow-2xl shadow-slate-950/5 dark:shadow-slate-950/60 w-full">
           {/* Header */}
-          <div className="flex items-center gap-3 border-b border-slate-800 pb-6 mb-6">
+          <div className="flex items-center gap-3 border-b border-slate-200 dark:border-slate-800 pb-6 mb-6">
             <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/20">
               <KeyRound className="w-6 h-6" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-white tracking-tight">
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
                 Change Password
               </h2>
-              <p className="text-xs text-slate-400 mt-0.5">
+              <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">
                 Ensure your account is using a long, random password to stay secure
               </p>
             </div>
@@ -95,8 +95,8 @@ export default function ChangePassword() {
 
           {/* Success Alert */}
           {changePasswordIsSuccess && (
-            <div className="mb-6 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-start gap-3">
-              <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+            <div className="mb-6 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-start gap-3">
+              <CheckCircle2 className="w-5 h-5 text-emerald-500 dark:text-emerald-400 shrink-0 mt-0.5" />
               <div className="text-sm font-medium">
                 Password has been changed successfully!
               </div>
@@ -105,8 +105,8 @@ export default function ChangePassword() {
 
           {/* Error Alert */}
           {changePasswordIsError && (
-            <div className="mb-6 p-4 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-400 flex items-start gap-3">
-              <AlertCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
+            <div className="mb-6 p-4 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 flex items-start gap-3">
+              <AlertCircle className="w-5 h-5 text-red-500 dark:text-red-400 shrink-0 mt-0.5" />
               <div className="text-sm font-medium">{errorMessage}</div>
             </div>
           )}
@@ -115,23 +115,23 @@ export default function ChangePassword() {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             {/* Old Password */}
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5 ml-1">
+              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5 ml-1">
                 Current Password
               </label>
               <div className="relative flex items-center">
-                <Lock className="absolute left-3.5 w-4 h-4 text-slate-500" />
+                <Lock className="absolute left-3.5 w-4 h-4 text-slate-400 dark:text-slate-500" />
                 <input
                   type={showOldPassword ? "text" : "password"}
                   {...register("oldPassword", {
                     required: "Current password is required",
                   })}
                   placeholder="Enter current password"
-                  className="w-full pl-10 pr-10 py-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all text-sm"
+                  className="w-full pl-10 pr-10 py-2.5 bg-white dark:bg-slate-950/60 border border-slate-300 dark:border-slate-800 rounded-xl text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all text-sm shadow-sm"
                 />
                 <button
                   type="button"
                   onClick={() => setShowOldPassword(!showOldPassword)}
-                  className="absolute right-3.5 text-slate-500 hover:text-slate-300 transition-colors focus:outline-none"
+                  className="absolute right-3.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 transition-colors focus:outline-none"
                 >
                   {showOldPassword ? (
                     <EyeOff className="w-4 h-4" />
@@ -141,7 +141,7 @@ export default function ChangePassword() {
                 </button>
               </div>
               {errors.oldPassword && (
-                <p className="text-xs text-red-400 mt-1 ml-1">
+                <p className="text-xs text-red-500 mt-1 ml-1">
                   {errors.oldPassword.message}
                 </p>
               )}
@@ -149,11 +149,11 @@ export default function ChangePassword() {
 
             {/* New Password */}
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5 ml-1">
+              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5 ml-1">
                 New Password
               </label>
               <div className="relative flex items-center">
-                <ShieldCheck className="absolute left-3.5 w-4 h-4 text-slate-500" />
+                <ShieldCheck className="absolute left-3.5 w-4 h-4 text-slate-400 dark:text-slate-500" />
                 <input
                   type={showNewPassword ? "text" : "password"}
                   {...register("newPassword", {
@@ -164,12 +164,12 @@ export default function ChangePassword() {
                     },
                   })}
                   placeholder="Enter new password"
-                  className="w-full pl-10 pr-10 py-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all text-sm"
+                  className="w-full pl-10 pr-10 py-2.5 bg-white dark:bg-slate-950/60 border border-slate-300 dark:border-slate-800 rounded-xl text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all text-sm shadow-sm"
                 />
                 <button
                   type="button"
                   onClick={() => setShowNewPassword(!showNewPassword)}
-                  className="absolute right-3.5 text-slate-500 hover:text-slate-300 transition-colors focus:outline-none"
+                  className="absolute right-3.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 transition-colors focus:outline-none"
                 >
                   {showNewPassword ? (
                     <EyeOff className="w-4 h-4" />
@@ -179,7 +179,7 @@ export default function ChangePassword() {
                 </button>
               </div>
               {errors.newPassword && (
-                <p className="text-xs text-red-400 mt-1 ml-1">
+                <p className="text-xs text-red-500 mt-1 ml-1">
                   {errors.newPassword.message}
                 </p>
               )}
@@ -187,11 +187,11 @@ export default function ChangePassword() {
 
             {/* Confirm New Password */}
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5 ml-1">
+              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1.5 ml-1">
                 Confirm New Password
               </label>
               <div className="relative flex items-center">
-                <ShieldCheck className="absolute left-3.5 w-4 h-4 text-slate-500" />
+                <ShieldCheck className="absolute left-3.5 w-4 h-4 text-slate-400 dark:text-slate-500" />
                 <input
                   type={showConfirmPassword ? "text" : "password"}
                   {...register("confirmPassword", {
@@ -200,12 +200,12 @@ export default function ChangePassword() {
                       value === newPasswordValue || "Passwords do not match",
                   })}
                   placeholder="Confirm new password"
-                  className="w-full pl-10 pr-10 py-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all text-sm"
+                  className="w-full pl-10 pr-10 py-2.5 bg-white dark:bg-slate-950/60 border border-slate-300 dark:border-slate-800 rounded-xl text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all text-sm shadow-sm"
                 />
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-3.5 text-slate-500 hover:text-slate-300 transition-colors focus:outline-none"
+                  className="absolute right-3.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 transition-colors focus:outline-none"
                 >
                   {showConfirmPassword ? (
                     <EyeOff className="w-4 h-4" />
@@ -215,7 +215,7 @@ export default function ChangePassword() {
                 </button>
               </div>
               {errors.confirmPassword && (
-                <p className="text-xs text-red-400 mt-1 ml-1">
+                <p className="text-xs text-red-500 mt-1 ml-1">
                   {errors.confirmPassword.message}
                 </p>
               )}
@@ -248,7 +248,7 @@ export default function ChangePassword() {
                   resetMutation();
                 }}
                 disabled={changePasswordPending}
-                className="py-3 px-4 bg-slate-800/80 hover:bg-slate-800 active:scale-[0.99] text-slate-300 hover:text-white font-medium rounded-xl border border-slate-700/50 transition-all duration-150 flex items-center justify-center gap-2 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                className="py-3 px-4 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800/80 dark:hover:bg-slate-800 active:scale-[0.99] text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white font-medium rounded-xl border border-slate-300 dark:border-slate-700/50 transition-all duration-150 flex items-center justify-center gap-2 text-sm disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
               >
                 <RotateCcw className="w-4 h-4" />
                 <span>Reset</span>

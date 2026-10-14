@@ -216,8 +216,8 @@ export default function ProjectDetailsPage() {
 
   if (projectLoading) {
     return (
-      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-8 gap-3 text-slate-400">
-        <Loader2 className="w-8 h-8 animate-spin text-indigo-400" />
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col items-center justify-center p-8 gap-3 text-slate-500 dark:text-slate-400 transition-colors duration-200">
+        <Loader2 className="w-8 h-8 animate-spin text-indigo-500 dark:text-indigo-400" />
         <span className="text-sm font-medium">Loading project workspace...</span>
       </div>
     );
@@ -225,13 +225,13 @@ export default function ProjectDetailsPage() {
 
   if (projectError || !project) {
     return (
-      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-8 text-center">
-        <div className="bg-slate-900/80 border border-slate-800 rounded-3xl p-8 max-w-md space-y-4">
-          <div className="w-12 h-12 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-400 flex items-center justify-center mx-auto">
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col items-center justify-center p-8 text-center transition-colors duration-200">
+        <div className="bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 max-w-md space-y-4 shadow-xl">
+          <div className="w-12 h-12 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-500 dark:text-red-400 flex items-center justify-center mx-auto">
             <AlertTriangle className="w-6 h-6" />
           </div>
-          <h2 className="text-xl font-bold text-white">Project Not Found</h2>
-          <p className="text-xs text-slate-400">
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white">Project Not Found</h2>
+          <p className="text-xs text-slate-600 dark:text-slate-400">
             The project workspace you are looking for may have been removed or you do not have permission to view it.
           </p>
           <Button variant="primary" onClick={() => navigate("/projects")} leftIcon={<ArrowLeft className="w-4 h-4" />}>
@@ -252,45 +252,45 @@ export default function ProjectDetailsPage() {
     : "";
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 py-8 px-4 sm:px-6 lg:px-8 selection:bg-indigo-500 selection:text-white">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 py-8 px-4 sm:px-6 lg:px-8 selection:bg-indigo-500 selection:text-white transition-colors duration-200">
       {/* Background glow */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-10 left-1/4 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-violet-600/10 rounded-full blur-3xl" />
+        <div className="absolute top-10 left-1/4 w-96 h-96 bg-indigo-500/10 dark:bg-indigo-600/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-violet-500/10 dark:bg-violet-600/10 rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto space-y-8">
         {/* Navigation Breadcrumb */}
-        <div className="flex items-center gap-2 text-xs text-slate-400 font-medium">
-          <Link to="/projects" className="hover:text-indigo-400 transition-colors flex items-center gap-1.5">
+        <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 font-medium">
+          <Link to="/projects" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1.5">
             <FolderGit2 className="w-3.5 h-3.5" />
             <span>Projects</span>
           </Link>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
-          <span className="text-slate-200 truncate max-w-xs">{project.name}</span>
+          <ChevronRight className="w-3.5 h-3.5 text-slate-400 dark:text-slate-600" />
+          <span className="text-slate-800 dark:text-slate-200 truncate max-w-xs">{project.name}</span>
         </div>
 
         {/* Project Header Banner */}
-        <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-lg dark:shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="space-y-2 max-w-2xl">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 to-violet-600 flex items-center justify-center text-white shadow-lg shadow-indigo-600/25">
                 <FolderGit2 className="w-6 h-6" />
               </div>
               <div>
-                <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+                <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
                   {project.name}
                 </h1>
                 {formattedDate && (
-                  <div className="flex items-center gap-1.5 text-xs text-slate-400 mt-0.5">
-                    <Calendar className="w-3.5 h-3.5 text-slate-500" />
+                  <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                    <Calendar className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
                     <span>Created {formattedDate}</span>
                   </div>
                 )}
               </div>
             </div>
 
-            <p className="text-sm text-slate-300 leading-relaxed pt-1">
+            <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed pt-1">
               {project.description || "No project description provided."}
             </p>
           </div>

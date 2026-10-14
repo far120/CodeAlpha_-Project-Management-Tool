@@ -93,9 +93,9 @@ export default function ProjectMembersModal({
       <div className="space-y-6">
         {/* Add Member Bar (Only owner or admin) */}
         {isOwnerOrAdmin && (
-          <div className="bg-slate-950/60 border border-slate-800 rounded-2xl p-4 space-y-3">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-              <UserPlus className="w-3.5 h-3.5 text-indigo-400" />
+          <div className="bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 space-y-3">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400 flex items-center gap-1.5">
+              <UserPlus className="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400" />
               <span>Add Collaborator</span>
             </h4>
             <div className="flex flex-col sm:flex-row gap-2.5">
@@ -103,7 +103,7 @@ export default function ProjectMembersModal({
                 value={selectedUserId}
                 onChange={(e) => setSelectedUserId(e.target.value)}
                 disabled={usersLoading || addPending}
-                className="flex-1 px-3 py-2 bg-slate-900 border border-slate-800 rounded-xl text-slate-100 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                className="flex-1 px-3 py-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 rounded-xl text-slate-900 dark:text-slate-100 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 shadow-sm"
               >
                 <option value="">
                   {usersLoading ? "Loading users..." : "-- Select user to add --"}
@@ -130,14 +130,14 @@ export default function ProjectMembersModal({
 
         {/* Members List */}
         <div className="space-y-2">
-          <div className="flex items-center justify-between text-xs text-slate-400 uppercase tracking-wider font-semibold px-1">
+          <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold px-1">
             <span>Members ({membersList.length})</span>
             <span>Role</span>
           </div>
 
-          <div className="divide-y divide-slate-800/80 rounded-2xl border border-slate-800 bg-slate-950/40 overflow-hidden">
+          <div className="divide-y divide-slate-100 dark:divide-slate-800/80 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950/40 overflow-hidden shadow-sm">
             {membersList.length === 0 ? (
-              <div className="p-6 text-center text-slate-400 text-sm">
+              <div className="p-6 text-center text-slate-500 dark:text-slate-400 text-sm">
                 No members found in this project.
               </div>
             ) : (
@@ -148,41 +148,41 @@ export default function ProjectMembersModal({
                 return (
                   <div
                     key={member._id}
-                    className="flex items-center justify-between p-3.5 hover:bg-slate-800/30 transition-colors"
+                    className="flex items-center justify-between p-3.5 hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-500/20 to-violet-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-300 text-xs font-bold uppercase shadow-sm">
+                      <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-500/10 to-violet-500/10 dark:from-indigo-500/20 dark:to-violet-500/20 border border-indigo-200 dark:border-indigo-500/30 flex items-center justify-center text-indigo-600 dark:text-indigo-300 text-xs font-bold uppercase shadow-sm">
                         {member.firstName ? member.firstName[0] : "U"}
                         {member.lastName ? member.lastName[0] : ""}
                       </div>
                       <div>
                         <div className="flex items-center gap-1.5">
-                          <p className="text-sm font-medium text-slate-100">
+                          <p className="text-sm font-medium text-slate-900 dark:text-slate-100">
                             {member.firstName} {member.lastName}
                           </p>
                           {isMe && (
-                            <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                            <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-500/20">
                               You
                             </span>
                           )}
                         </div>
-                        <p className="text-xs text-slate-400">{member.email}</p>
+                        <p className="text-xs text-slate-500 dark:text-slate-400">{member.email}</p>
                       </div>
                     </div>
 
                     <div className="flex items-center gap-3">
                       {isProjectOwner ? (
-                        <span className="flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                        <span className="flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-500 dark:text-amber-400 border border-amber-500/20">
                           <Crown className="w-3.5 h-3.5" />
                           <span>Owner</span>
                         </span>
                       ) : member.role === "admin" || member.role === "super-admin" ? (
-                        <span className="flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full bg-violet-500/10 text-violet-400 border border-violet-500/20">
+                        <span className="flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-full bg-violet-500/10 text-violet-500 dark:text-violet-400 border border-violet-500/20">
                           <Shield className="w-3.5 h-3.5" />
                           <span>Admin</span>
                         </span>
                       ) : (
-                        <span className="text-xs text-slate-400 px-2 py-1">Member</span>
+                        <span className="text-xs text-slate-500 dark:text-slate-400 px-2 py-1">Member</span>
                       )}
 
                       {/* Remove member button */}
@@ -190,7 +190,7 @@ export default function ProjectMembersModal({
                         <button
                           onClick={() => handleRemoveMember(member._id)}
                           disabled={removePending}
-                          className="p-1.5 rounded-lg text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition-colors"
+                          className="p-1.5 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors"
                           title="Remove from project"
                         >
                           <UserMinus className="w-4 h-4" />
@@ -205,7 +205,7 @@ export default function ProjectMembersModal({
         </div>
 
         {/* Footer */}
-        <div className="flex justify-end pt-3 border-t border-slate-800/80">
+        <div className="flex justify-end pt-3 border-t border-slate-200 dark:border-slate-800/80">
           <Button variant="secondary" onClick={onClose}>
             Done
           </Button>

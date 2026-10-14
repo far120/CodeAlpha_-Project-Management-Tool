@@ -96,26 +96,26 @@ export default function ProjectsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 py-10 px-4 sm:px-6 lg:px-8 selection:bg-indigo-500 selection:text-white">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 py-10 px-4 sm:px-6 lg:px-8 selection:bg-indigo-500 selection:text-white transition-colors duration-200">
       {/* Ambient background glow */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-1/3 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-violet-600/10 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-1/3 w-96 h-96 bg-indigo-500/10 dark:bg-indigo-600/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-violet-500/10 dark:bg-violet-600/10 rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto space-y-8">
         {/* Banner Section */}
-        <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-lg dark:shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="space-y-1">
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-indigo-400">
-              <Sparkles className="w-4 h-4 text-indigo-400" />
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+              <Sparkles className="w-4 h-4 text-indigo-500 dark:text-indigo-400" />
               <span>Team Workspaces & Planning</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white flex items-center gap-3">
-              <FolderGit2 className="w-8 h-8 text-indigo-400" />
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-3">
+              <FolderGit2 className="w-8 h-8 text-indigo-500 dark:text-indigo-400" />
               <span>Project Workspaces</span>
             </h1>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-slate-600 dark:text-slate-400">
               Manage all team initiatives, organize tasks into Kanban boards, and track progress in real time.
             </p>
           </div>
@@ -132,89 +132,89 @@ export default function ProjectsPage() {
 
         {/* Stats Row */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-          <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800 rounded-2xl p-5 shadow-xl">
+          <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm dark:shadow-xl">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+              <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                 Total Projects
               </span>
-              <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-400">
+              <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-500 dark:text-indigo-400">
                 <Briefcase className="w-5 h-5" />
               </div>
             </div>
-            <p className="mt-3 text-3xl font-bold text-white">
+            <p className="mt-3 text-3xl font-bold text-slate-900 dark:text-white">
               {isLoading ? "..." : totalProjects}
             </p>
           </div>
 
-          <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800 rounded-2xl p-5 shadow-xl">
+          <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm dark:shadow-xl">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+              <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                 Team Collaborators
               </span>
-              <div className="p-2 rounded-xl bg-violet-500/10 text-violet-400">
+              <div className="p-2 rounded-xl bg-violet-500/10 text-violet-500 dark:text-violet-400">
                 <Users className="w-5 h-5" />
               </div>
             </div>
-            <p className="mt-3 text-3xl font-bold text-white">
+            <p className="mt-3 text-3xl font-bold text-slate-900 dark:text-white">
               {isLoading ? "..." : totalCollaborations}
             </p>
           </div>
 
-          <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800 rounded-2xl p-5 shadow-xl">
+          <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm dark:shadow-xl">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+              <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                 Filter Status
               </span>
-              <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400">
+              <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-500 dark:text-emerald-400">
                 <Sparkles className="w-5 h-5" />
               </div>
             </div>
-            <p className="mt-3 text-3xl font-bold text-white">
-              {filteredProjects.length} <span className="text-sm font-normal text-slate-400">visible</span>
+            <p className="mt-3 text-3xl font-bold text-slate-900 dark:text-white">
+              {filteredProjects.length} <span className="text-sm font-normal text-slate-500 dark:text-slate-400">visible</span>
             </p>
           </div>
         </div>
 
         {/* Search & Actions Bar */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-slate-900/60 backdrop-blur-xl border border-slate-800 p-4 rounded-2xl">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl border border-slate-200 dark:border-slate-800 p-4 rounded-2xl shadow-sm">
           <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 dark:text-slate-500" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search projects by name or description..."
-              className="w-full pl-10 pr-4 py-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-slate-100 placeholder-slate-500 text-xs focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+              className="w-full pl-10 pr-4 py-2.5 bg-slate-100 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 text-xs focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
             />
           </div>
 
-          <p className="text-xs text-slate-400 self-center">
-            Showing <strong className="text-slate-200">{filteredProjects.length}</strong> of{" "}
+          <p className="text-xs text-slate-500 dark:text-slate-400 self-center">
+            Showing <strong className="text-slate-800 dark:text-slate-200">{filteredProjects.length}</strong> of{" "}
             {totalProjects} projects
           </p>
         </div>
 
         {/* Projects Grid */}
         {isLoading ? (
-          <div className="flex flex-col items-center justify-center p-16 gap-3 text-slate-400">
-            <Loader2 className="w-8 h-8 animate-spin text-indigo-400" />
+          <div className="flex flex-col items-center justify-center p-16 gap-3 text-slate-500 dark:text-slate-400">
+            <Loader2 className="w-8 h-8 animate-spin text-indigo-500 dark:text-indigo-400" />
             <span className="text-sm font-medium">Loading project workspaces...</span>
           </div>
         ) : isError ? (
-          <div className="bg-red-500/10 border border-red-500/20 rounded-3xl p-8 text-center text-red-400 space-y-2">
+          <div className="bg-red-500/10 border border-red-500/20 rounded-3xl p-8 text-center text-red-600 dark:text-red-400 space-y-2">
             <p className="font-semibold text-base">Failed to load projects</p>
-            <p className="text-xs text-red-300">
+            <p className="text-xs text-red-500 dark:text-red-300">
               Please ensure the backend server is running and check your connection.
             </p>
           </div>
         ) : filteredProjects.length === 0 ? (
-          <div className="bg-slate-900/60 border border-dashed border-slate-800 rounded-3xl p-12 text-center space-y-4">
-            <div className="w-16 h-16 rounded-2xl bg-indigo-600/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mx-auto">
+          <div className="bg-white/60 dark:bg-slate-900/60 border border-dashed border-slate-300 dark:border-slate-800 rounded-3xl p-12 text-center space-y-4 shadow-sm">
+            <div className="w-16 h-16 rounded-2xl bg-indigo-500/10 dark:bg-indigo-600/10 border border-indigo-500/20 flex items-center justify-center text-indigo-500 dark:text-indigo-400 mx-auto">
               <FolderOpen className="w-8 h-8" />
             </div>
             <div className="space-y-1 max-w-sm mx-auto">
-              <h3 className="text-lg font-bold text-white">No projects found</h3>
-              <p className="text-xs text-slate-400">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white">No projects found</h3>
+              <p className="text-xs text-slate-600 dark:text-slate-400">
                 {searchQuery
                   ? "No projects match your search keywords. Try adjusting your query."
                   : "You haven't created any projects yet. Get started by creating your first workspace!"}
