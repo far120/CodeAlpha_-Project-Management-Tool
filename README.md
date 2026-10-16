@@ -39,8 +39,8 @@ Clone the repository and install dependencies for the root, client, and server:
 
 ```bash
 # Clone repository
-git clone https://github.com/far120/CodeAlpha_-Project-Management-Tool.git
-cd "CodeAlpha_ Project Management Tool"
+git clone https://github.com/far120/Project-Management-Tool.git
+cd "Project Management Tool"
 
 # Install root dependencies
 npm install
